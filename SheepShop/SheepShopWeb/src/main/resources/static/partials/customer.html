@@ -1,0 +1,37 @@
+<div ng-controller = "customerController">
+    <div>
+	    <form name="customerForm">
+	        <label>Day</label>
+	        <input type="number" name="day" ng-model="day" min="1" required/>
+	        <label style="color: red;" ng-show="customerForm.day.$error.required">Required.</label>
+	        <label style="color: red;" ng-show="customerForm.day.$error.number">Not valid number.</label>
+	        <label style="color: red;" ng-show="customerForm.day.$error.min">Minimum value is 1.</label>
+	        <br/>
+	        <hr/>
+	        <br/>
+	        <label>Name</label>
+	        <input type="text" name="name" ng-model="customer.name" ng-minlength="3" required/>
+	        <label style="color: red;" ng-show="customerForm.name.$error.required">Required.</label>
+	        <label style="color: red;" ng-show="customerForm.name.$error.minlength">Name is too short.</label>
+	        <br/>
+	        <lablel>Milk</lablel>
+	        <input type="number" name="milk" ng-model="customer.order.milk" placeholder="Decimal" step="0.01" min="0" required/>
+	        <label style="color: red;" ng-show="customerForm.milk.$error.required">Required.</label>
+	        <label style="color: red;" ng-show="customerForm.milk.$error.number">Not valid number.</label>
+	        <label style="color: red;" ng-show="customerForm.milk.$error.min">Must be positive.</label>
+	        <br/>
+	        <label>Skins</label>
+	        <input type="number" name="skins" ng-model="customer.order.skins" min="0" required/>
+	        <label style="color: red;" ng-show="customerForm.skins.$error.required">Required.</label>
+	        <label style="color: red;" ng-show="customerForm.skins.$error.number">Not valid number.</label>
+	        <label style="color: red;" ng-show="customerForm.skins.$error.min">Must be positive.</label>
+	        <br/>
+	        <button ng-click="getOrder()" ng-disabled="customerForm.$invalid">Order</button>
+	        <label>{{orderStatus}}</label>
+	    </form>
+    </div>
+    <br/>
+    <div ng-show="orderData">
+    	<p>Order: milk = {{orderData.milk}}, skins = {{orderData.skins}}</p>
+    </div>
+</div>

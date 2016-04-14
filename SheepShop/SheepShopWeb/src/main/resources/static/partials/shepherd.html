@@ -1,0 +1,39 @@
+<div ng-controller = "shepherdController">
+	<div>
+	    <input type="file" file-model="myFile"/>
+	    <button ng-click="uploadFile()">upload me</button>
+	    <label>{{uploadStatus}}</label>
+	</div>
+	<br/>
+	<div>
+		<form name="shepherdForm">
+			<input type="number" name="day" ng-model="day" min="1" required/>
+	        <label style="color: red;" ng-show="shepherdForm.day.$error.required">Required.</label>
+	        <label style="color: red;" ng-show="shepherdForm.day.$error.number">Not valid number.</label>
+	        <label style="color: red;" ng-show="shepherdForm.day.$error.min">Minimum value is 1.</label>
+	        <br/>
+		    <button ng-click="getStockData()" ng-disabled="shepherdForm.$invalid">Get stock</button>
+		    <button ng-click="getHerdData()" ng-disabled="shepherdForm.$invalid">Get herd</button>
+		</form>
+	</div>
+	<br/>
+	<br/>
+	<div ng-show=stockData>
+		<label>Stock:</label>
+		<ul>
+			<li>{{stockData.milk}} liters of milk</li>
+			<li>{{stockData.skins}} skins of wool</li>
+		</ul>
+	</div>
+	<br/>
+	<br/>
+	<div ng-show=herdData>
+		<label>Herd:</label>
+		<ul>
+			<li ng-repeat="sheep in herdData.herd | orderBy:'name'"">{{sheep.name}} -> {{sheep.age}} years old (age last shaved: {{sheep.age-last-shaved}})</li>
+		</ul>
+	</div>
+	<div ng-show=error>
+		<label>{{error}}</label>
+	</div>
+</div>

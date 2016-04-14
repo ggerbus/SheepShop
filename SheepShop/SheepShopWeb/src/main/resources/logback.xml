@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property name="PATTERN_LAYOUT"
+		value="[%date{dd.MM.yyyy HH:mm:ss.SSS}] : %-5level : %logger{0}.%method.[%line] : %thread%n: %mdc : %message%n%exception" />
+
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${PATTERN_LAYOUT}</pattern>
+		</layout>
+	</appender>
+
+	<!-- ################# -->
+	<!-- SPRING -->
+	<!-- ################# -->
+	<logger name="org.springframework" level="warn" additivity="false">
+		<appender-ref ref="consoleAppender" />
+	</logger>
+
+	<!-- ################# -->
+	<!-- SHEEP-SHOP -->
+	<!-- ################# -->
+	<logger name="hr.goran.sheepshop" level="info" additivity="false">
+		<appender-ref ref="consoleAppender" />
+	</logger>
+
+	
+	<!-- ################# -->
+	<!-- DEFAULT -->
+	<!-- ################# -->
+	<root level="warn">
+		<appender-ref ref="consoleAppender" />
+	</root>
+
+</configuration>
